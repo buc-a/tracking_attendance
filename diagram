@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+node "Docker Host" {
+  
+  node "nginx" {
+    component "Nginx (80)" 
+  }
+
+  node "frontend" {
+    component "React App (3000)"
+  }
+
+  node "backend" {
+    component "Django API (8000)" 
+  }
+
+  node "db" {
+    database "PostgreSQL (5432)"
+  }
+}
+
+nginx --> frontend : HTTP
+nginx --> backend : API proxy
+
+frontend --> backend : REST API\n(http://localhost:8000/api/v1)
+
+backend --> db : SQL (5432)
+
+@enduml

@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "tracking-attendance-api",
+		"name": "Tracking Attendance API",
+		"description": "Коллекция для тестирования API системы учёта посещаемости",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refreshToken",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "List Groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/groups/",
+							"host": ["{{baseUrl}}"],
+							"path": ["groups", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ИС-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/",
+							"host": ["{{baseUrl}}"],
+							"path": ["groups", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Group by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/groups/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["groups", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Group",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ИС-22\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["groups", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/groups/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["groups", "1", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Subjects",
+			"item": [
+				{
+					"name": "List Subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/subjects/",
+							"host": ["{{baseUrl}}"],
+							"path": ["subjects", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Subject",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Математика\",\n    \"teacher\": \"teacher1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/subjects/",
+							"host": ["{{baseUrl}}"],
+							"path": ["subjects", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Subject by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/subjects/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["subjects", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Subject",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Высшая математика\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/subjects/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["subjects", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Delete Subject",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/subjects/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["subjects", "1", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Lessons",
+			"item": [
+				{
+					"name": "List Lessons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/lessons/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""]
+						}
+					}
+				},
+				{
+					"name": "List Lessons (Filtered by Subject)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/lessons/?subject=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""],
+							"query": [
+								{
+									"key": "subject",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Lessons (Filtered by Group)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/lessons/?group=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""],
+							"query": [
+								{
+									"key": "group",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Lessons (Filtered by Date Range)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/lessons/?date_from=2026-09-01&date_to=2026-09-30",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2026-09-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2026-09-30"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Single Lesson",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": 1,\n    \"group\": 1,\n    \"date\": \"2026-09-01\",\n    \"lesson_number\": 1,\n    \"recurrence\": \"once\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/lessons/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Weekly Lesson Series",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": 1,\n    \"group\": 1,\n    \"date\": \"2026-09-01\",\n    \"lesson_number\": 2,\n    \"recurrence\": \"weekly\",\n    \"weekday\": 1,\n    \"end_date\": \"2027-01-31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/lessons/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""]
+						}
+					}
+				},
+				{
+					"name": "Create Biweekly Lesson Series",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": 1,\n    \"group\": 1,\n    \"date\": \"2026-09-01\",\n    \"lesson_number\": 3,\n    \"recurrence\": \"biweekly\",\n    \"weekday\": 2,\n    \"end_date\": \"2027-01-31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/lessons/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Lesson by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/lessons/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Lesson",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lesson_number\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/lessons/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Delete Lesson",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/lessons/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["lessons", "1", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Schedule",
+			"item": [
+				{
+					"name": "Get Schedule (Date Range)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/schedule/?date_from=2026-09-01&date_to=2026-09-30",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedule", ""],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2026-09-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2026-09-30"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Schedule (Filtered by Group)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/schedule/?date_from=2026-09-01&date_to=2026-09-30&group_id=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedule", ""],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2026-09-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2026-09-30"
+								},
+								{
+									"key": "group_id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Schedule (Filtered by Subject)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/schedule/?date_from=2026-09-01&date_to=2026-09-30&subject_id=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["schedule", ""],
+							"query": [
+								{
+									"key": "date_from",
+									"value": "2026-09-01"
+								},
+								{
+									"key": "date_to",
+									"value": "2026-09-30"
+								},
+								{
+									"key": "subject_id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Grades",
+			"item": [
+				{
+					"name": "List Grades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/grades/",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", ""]
+						}
+					}
+				},
+				{
+					"name": "List Grades (Filtered by Student)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/grades/?student=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", ""],
+							"query": [
+								{
+									"key": "student",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "List Grades (Filtered by Subject)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/grades/?subject=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", ""],
+							"query": [
+								{
+									"key": "subject",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student\": 1,\n    \"subject\": 1,\n    \"lesson\": 1,\n    \"value\": 85\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/grades/",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", ""]
+						}
+					}
+				},
+				{
+					"name": "Get Grade by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/grades/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Update Grade",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 90\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/grades/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", "1", ""]
+						}
+					}
+				},
+				{
+					"name": "Delete Grade",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/grades/1/",
+							"host": ["{{baseUrl}}"],
+							"path": ["grades", "1", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "My Subjects (Teacher)",
+			"item": [
+				{
+					"name": "Get My Subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/my-subjects/",
+							"host": ["{{baseUrl}}"],
+							"path": ["my-subjects", ""]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "List All Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/students/",
+							"host": ["{{baseUrl}}"],
+							"path": ["students", ""]
+						}
+					}
+				},
+				{
+					"name": "List Students by Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/students/?group=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["students", ""],
+							"query": [
+								{
+									"key": "group",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}
